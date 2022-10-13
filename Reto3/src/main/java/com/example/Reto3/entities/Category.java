@@ -1,8 +1,7 @@
 package com.example.Reto3.entities;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
+//import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,14 +22,8 @@ public class Category implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "descriptoin")
+    @Column(name = "description")
     private String description;
-
-    @Column(name = "createdAt")
-    private Date createdAt;
-
-    @Column(name = "updatedAt")
-    private Date updatedAt;
 
     // ** METODOS */
 
@@ -58,25 +51,11 @@ public class Category implements Serializable {
         this.description = description;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public List<Category> getListCategories() {
-        return null;
-    }
+    /*
+     * public List<Category> getListCategories() {
+     * return null;
+     * }
+     */
 
     public Category getCategory(int id2) {
         return null;
