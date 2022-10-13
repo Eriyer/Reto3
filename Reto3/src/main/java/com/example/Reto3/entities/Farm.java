@@ -1,7 +1,7 @@
 package com.example.Reto3.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+//import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,23 +26,23 @@ public class Farm implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "address")
     private String address;
 
     @Column(name = "extension")
     private String extension;
 
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "descriptoin")
+    @Column(name = "description")
     private String description;
 
-    @Column(name = "createdAt")
-    private Date createdAt;
+    // @Column(name = "createdAt")
+    // private Date createdAt;
 
-    @Column(name = "updatedAt")
-    private Date updatedAt;
+    // @Column(name = "updatedAt")
+    // private Date updatedAt;
 
     // ** RELACIONES */
     // Relación uno a uno. Una farm tiene un Category relacionado.
@@ -98,22 +98,23 @@ public class Farm implements Serializable {
         this.description = description;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
+    /*
+     * public Date getCreatedAt() {
+     * return createdAt;
+     * }
+     * 
+     * public void setCreatedAt(Date createdAt) {
+     * this.createdAt = createdAt;
+     * }
+     * 
+     * public Date getUpdatedAt() {
+     * return updatedAt;
+     * }
+     * 
+     * public void setUpdatedAt(Date updatedAt) {
+     * this.updatedAt = updatedAt;
+     * }
+     */
     public void actualizarFarm(Integer id2, Farm farm) {
     }
 
