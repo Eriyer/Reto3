@@ -1,8 +1,6 @@
 package com.example.Reto3.entities;
 
 import java.io.Serializable;
-//import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,12 +29,6 @@ public class Reservation implements Serializable {
 
     @Column(name = "devolutiondate")
     private String devolutiondate;
-
-    // @Column(name = "createdAt")
-    // private Date createdAt;
-
-    // @Column(name = "updatedAt")
-    // private Date updatedAt;
 
     // RELACIONES//
     // Relacion muchos a uno. El message tiene enlazado un Client y un Farm
@@ -74,27 +66,6 @@ public class Reservation implements Serializable {
 
     public void setDevolutiondate(String devolutiondate) {
         this.devolutiondate = devolutiondate;
-    }
-
-    /*
-     * public Date getCreatedAt() {
-     * return createdAt;
-     * }
-     * 
-     * public void setCreatedAt(Date createdAt) {
-     * this.createdAt = createdAt;
-     * }
-     * 
-     * public Date getUpdatedAt() {
-     * return updatedAt;
-     * }
-     * 
-     * public void setUpdatedAt(Date updatedAt) {
-     * this.updatedAt = updatedAt;
-     * }
-     */
-    public List<Reservation> getListReservations() {
-        return null;
     }
 
     public Reservation crearReservation(Reservation reservation) {
