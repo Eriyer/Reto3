@@ -2,11 +2,9 @@ package com.example.Reto3.entities;
 
 import java.io.Serializable;
 
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,8 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "Message")
@@ -31,15 +28,15 @@ public class Message implements Serializable {
 
     // RELACIONES//
     // Relacion muchos a uno. El message tiene enlazado un Client y un Farm
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "Cliente_id")
-    @JsonProperty(access = Access.WRITE_ONLY)
-    private Client client;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "Farm_id")
-    @JsonProperty(access = Access.WRITE_ONLY)
+    @ManyToOne(optional = false)
+    @JsonIgnoreProperties(value = { "messages", "reservations" })
+    @JoinColumn(name = "farm_id")
     private Farm farm;
+
+    @ManyToOne(optional = false)
+    @JsonIgnoreProperties(value = { "messages", "reservations" })
+    @JoinColumn(name = "client_id")
+    private Client client;
 
     // METODOS
     public Integer getId() {

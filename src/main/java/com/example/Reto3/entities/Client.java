@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "client")
 public class Client implements Serializable {
@@ -83,9 +85,26 @@ public class Client implements Serializable {
     // un empleado puede tener muchas reservaciones y messages
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private Set<Reservation> Reservations = new HashSet<>();
+    private Set<Message> messages = new HashSet<>();
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private Set<Message> Messages = new HashSet<>();
+    @JsonIgnoreProperties(value = { "client" })
+    private Set<Reservation> reservations = new HashSet<>();
+
+    public Set<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(Set<Message> messages) {
+        this.messages = messages;
+    }
+
+    public Set<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
+    }
 
 }
