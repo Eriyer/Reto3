@@ -24,10 +24,7 @@ public class Client implements Serializable {
     // ATRIBUTOS**
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @Column(name = "name")
-    private String name;
+    private Integer idClient;
 
     @Column(name = "email")
     private String email;
@@ -35,17 +32,20 @@ public class Client implements Serializable {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "age")
-    private String age;
+    private Integer age;
 
     // *METODOS */
 
-    public Integer getId() {
-        return id;
+    public Integer getIdClient() {
+        return idClient;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdClient(Integer idClient) {
+        this.idClient = idClient;
     }
 
     public String getName() {
@@ -72,11 +72,11 @@ public class Client implements Serializable {
         this.password = password;
     }
 
-    public String getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 

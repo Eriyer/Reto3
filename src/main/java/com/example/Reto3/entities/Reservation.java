@@ -22,7 +22,7 @@ public class Reservation implements Serializable {
     // ATRIBUTOS**
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idReservation;
 
     @Column(name = "startDate")
     private Date startDate;
@@ -88,12 +88,12 @@ public class Reservation implements Serializable {
         this.farm = farm;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdReservation() {
+        return idReservation;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdReservation(Integer idReservation) {
+        this.idReservation = idReservation;
     }
 
     public String getStatus() {

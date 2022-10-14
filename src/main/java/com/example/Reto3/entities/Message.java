@@ -21,7 +21,7 @@ public class Message implements Serializable {
     // ATRIBUTOS**
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idMessage;
 
     @Column(name = "messagetext")
     private String messagetext;
@@ -39,12 +39,12 @@ public class Message implements Serializable {
     private Client client;
 
     // METODOS
-    public Integer getId() {
-        return id;
+    public Integer getIdMessage() {
+        return idMessage;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdMessage(Integer idMessage) {
+        this.idMessage = idMessage;
     }
 
     public String getMessagetext() {
