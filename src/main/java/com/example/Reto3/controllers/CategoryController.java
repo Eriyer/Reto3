@@ -56,6 +56,9 @@ public class CategoryController {
 
     @PutMapping("/update")
     public ResponseEntity<Void> actualizarCategory(@RequestBody Category category) {
+        System.out.println("id *******" + category.getId());
+        System.out.println("name *******" + category.getName());
+        System.out.println("description *******" + category.getDescription());
         this.categoryservice.actualizarCategory(category.getId(), category);
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }

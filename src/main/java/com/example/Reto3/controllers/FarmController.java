@@ -40,8 +40,9 @@ public class FarmController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Farm> crearFarm(@RequestBody Farm farm) {
-        return new ResponseEntity<Farm>(this.farmservice.crearFarm(farm), HttpStatus.CREATED);
+    public ResponseEntity<Void> crearFarm(@RequestBody Farm farm) {
+        this.farmservice.crearFarm(farm);
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
@@ -51,7 +52,7 @@ public class FarmController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Void> actualizarFarm(@RequestBody Farm farm) {
+    public ResponseEntity<Void>  actualizarFarm(@RequestBody Farm farm){
         this.farmservice.actualizarFarm(farm.getId(), farm);
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
