@@ -23,8 +23,8 @@ public class Message implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMessage;
 
-    @Column(name = "messagetext")
-    private String messagetext;
+    @Column(name = "messageText")
+    private String messageText;
 
     // RELACIONES//
     // Relacion muchos a uno. El message tiene enlazado un Client y un Farm
@@ -47,12 +47,12 @@ public class Message implements Serializable {
         this.idMessage = idMessage;
     }
 
-    public String getMessagetext() {
-        return messagetext;
+    public String getMessageText() {
+        return messageText;
     }
 
-    public void setMessagetext(String messagetext) {
-        this.messagetext = messagetext;
+    public void setMessageText(String messageText) {
+        this.messageText = messageText;
     }
 
     public Client getClient() {
@@ -70,4 +70,5 @@ public class Message implements Serializable {
     public void setFarm(Farm farm) {
         this.farm = farm;
     }
+
 }
