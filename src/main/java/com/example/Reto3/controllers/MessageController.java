@@ -30,7 +30,7 @@ public class MessageController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Message>> getMessage() {
+    public ResponseEntity<List<Message>> getMessages() {
         return new ResponseEntity<List<Message>>(this.messageservice.getListMessages(), HttpStatus.OK);
     }
 
@@ -45,14 +45,14 @@ public class MessageController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> eliminarMessage(@PathVariable("id") int id) {
+    public ResponseEntity<Void> eliminarMessage(@PathVariable("id") int id){
         this.messageservice.eliminarMessage(id);
-        return new ResponseEntity<String>("Message Eliminado", HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("/Update")
-    public ResponseEntity<String> actualizarMessage(@RequestBody Message message) {
+    @PutMapping("/update")
+    public ResponseEntity<Void> actualizarMessage(@RequestBody Message message){
         this.messageservice.actualizarMessage(message.getId(), message);
-        return new ResponseEntity<String>("Message Actualizado", HttpStatus.CREATED);
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 }

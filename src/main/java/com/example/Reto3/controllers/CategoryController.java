@@ -33,7 +33,7 @@ public class CategoryController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Category>> getCategory() {
+    public ResponseEntity<List<Category>> getCategorys() {
         return new ResponseEntity<List<Category>>(this.categoryservice.getListCategories(), HttpStatus.OK);
     }
 
@@ -43,19 +43,20 @@ public class CategoryController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Category> crearCategory(@RequestBody Category category) {
-        return new ResponseEntity<Category>(this.categoryservice.crearCategory(category), HttpStatus.CREATED);
+    public ResponseEntity<Void> crearCategory(@RequestBody Category category) {
+        this.categoryservice.crearCategory(category);
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> eliminarCategory(@PathVariable("id") int id) {
+    public ResponseEntity<Void> eliminarCategory(@PathVariable("id") int id) {
         this.categoryservice.eliminarCategory(id);
-        return new ResponseEntity<String>("Category Eliminada", HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("/Update")
-    public ResponseEntity<String> actualizarCategory(@RequestBody Category category) {
+    @PutMapping("/update")
+    public ResponseEntity<Void> actualizarCategory(@RequestBody Category category) {
         this.categoryservice.actualizarCategory(category.getId(), category);
-        return new ResponseEntity<String>("Category Actualizada", HttpStatus.CREATED);
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 }

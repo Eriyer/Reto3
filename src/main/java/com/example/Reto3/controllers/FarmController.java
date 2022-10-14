@@ -30,7 +30,7 @@ public class FarmController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Farm>> getFarm() {
+    public ResponseEntity<List<Farm>> getFarms() {
         return new ResponseEntity<List<Farm>>(this.farmservice.getListFarms(), HttpStatus.OK);
     }
 
@@ -45,14 +45,14 @@ public class FarmController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> eliminarFarm(@PathVariable("id") int id) {
+    public ResponseEntity<Void> eliminarFarm(@PathVariable("id") int id) {
         this.farmservice.eliminarFarm(id);
-        return new ResponseEntity<String>("Farm Eliminado", HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("/Update")
-    public ResponseEntity<String> actualizarFarm(@RequestBody Farm farm) {
+    @PutMapping("/update")
+    public ResponseEntity<Void> actualizarFarm(@RequestBody Farm farm) {
         this.farmservice.actualizarFarm(farm.getId(), farm);
-        return new ResponseEntity<String>("Farm Actualizado", HttpStatus.CREATED);
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 }

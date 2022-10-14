@@ -3,7 +3,7 @@ package com.example.Reto3.entities;
 import java.io.Serializable;
 //import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,9 +13,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "Farm")
@@ -38,23 +41,25 @@ public class Farm implements Serializable {
     @Column(name = "description")
     private String description;
 
-    // @Column(name = "createdAt")
-    // private Date createdAt;
-
-    // @Column(name = "updatedAt")
-    // private Date updatedAt;
-
     // ** RELACIONES */
     // Relación uno a uno. Una farm tiene un Category relacionado.
-    @OneToOne
-    @JoinColumn(name = "Category_id")
+    @ManyToOne(optional = true)
+    @JsonIgnoreProperties(value = { "farms" })
+    @JoinColumn(name = "category_id")
     private Category category;
+    // @OneToOne
+    // @JoinColumn(name = "category_id")
+    // private Category category;
+
+    // Un Farm puede tener muchas Reservation y Messages.
 
     @OneToMany(mappedBy = "farm", cascade = CascadeType.ALL)
-    private Set<Message> Reservation = new HashSet<>();
+    @JsonIgnoreProperties(value = { "client", "farm" })
+    // @JsonIgnoreProperties("farm")
+    private Set<Message> messages = new HashSet<>();
 
     @OneToMany(mappedBy = "farm", cascade = CascadeType.ALL)
-    private Set<Message> Messages = new HashSet<>();
+    private Set<Reservation> reservations = new HashSet<>();
 
     // METODOS
 
@@ -98,39 +103,28 @@ public class Farm implements Serializable {
         this.description = description;
     }
 
-    /*
-     * public Date getCreatedAt() {
-     * return createdAt;
-     * }
-     * 
-     * public void setCreatedAt(Date createdAt) {
-     * this.createdAt = createdAt;
-     * }
-     * 
-     * public Date getUpdatedAt() {
-     * return updatedAt;
-     * }
-     * 
-     * public void setUpdatedAt(Date updatedAt) {
-     * this.updatedAt = updatedAt;
-     * }
-     */
-    public void actualizarFarm(Integer id2, Farm farm) {
+    public Category getCategory() {
+        return category;
     }
 
-    public void eliminarFarm(int id2) {
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public Farm crearFarm(Farm farm) {
-        return null;
+    public Set<Reservation> getReservations() {
+        return reservations;
     }
 
-    public Farm getFarm(int id2) {
-        return null;
+    public void setReservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
     }
 
-    public List<Farm> getListFarms() {
-        return null;
+    public Set<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(Set<Message> messages) {
+        this.messages = messages;
     }
 
 }

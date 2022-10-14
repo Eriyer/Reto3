@@ -32,7 +32,7 @@ public class ClientController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Client>> getClient() {
+    public ResponseEntity<List<Client>> getClients() {
         return new ResponseEntity<List<Client>>(this.clientservice.getListClients(), HttpStatus.OK);
     }
 
@@ -42,19 +42,20 @@ public class ClientController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Client> crearClient(@RequestBody Client client) {
-        return new ResponseEntity<Client>(this.clientservice.crearClient(client), HttpStatus.CREATED);
+    public ResponseEntity<Void> crearClient(@RequestBody Client client) {
+        this.clientservice.crearClient(client);
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> eliminarClient(@PathVariable("id") int id) {
+    public ResponseEntity<Void> eliminarClient(@PathVariable("id") int id) {
         this.clientservice.eliminarClient(id);
-        return new ResponseEntity<String>("Client Eliminado", HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("/Update")
-    public ResponseEntity<String> actualizarClient(@RequestBody Client Client) {
-        this.clientservice.actualizarClient(Client.getId(), Client);
-        return new ResponseEntity<String>("Client Actualizada", HttpStatus.CREATED);
+    @PutMapping("/update")
+    public ResponseEntity<Void> actualizarClient(@RequestBody Client client) {
+        this.clientservice.actualizarClient(client.getId(), client);
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 }
