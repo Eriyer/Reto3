@@ -31,7 +31,7 @@ public class ReservationController {
 
     @GetMapping("/all")
     public ResponseEntity<List<Reservation>> getReservations() {
-        return new ResponseEntity<List<Reservation>>(this.reservationservice.getListReservations(), HttpStatus.OK);
+        return new ResponseEntity<List<Reservation>>(this.reservationservice.getListReservation(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

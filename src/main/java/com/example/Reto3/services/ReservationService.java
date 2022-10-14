@@ -50,7 +50,4 @@ public class ReservationService {
 
     }
 
-    public List<Reservation> getListReservations() {
-        return null;
-    }
 }

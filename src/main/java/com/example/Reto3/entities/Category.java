@@ -1,14 +1,20 @@
 package com.example.Reto3.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 //import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "category")
@@ -25,6 +31,11 @@ public class Category implements Serializable {
     @Column(name = "description")
     private String description;
 
+    // *relaciones */
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("category")
+    private Set<Farm> farms = new HashSet<>();
     // ** METODOS */
 
     public Integer getId() {
@@ -51,24 +62,12 @@ public class Category implements Serializable {
         this.description = description;
     }
 
-    /*
-     * public List<Category> getListCategories() {
-     * return null;
-     * }
-     */
-
-    public Category getCategory(int id2) {
-        return null;
+    public Set<Farm> getFarms() {
+        return farms;
     }
 
-    public Category crearCategory(Category category) {
-        return null;
-    }
-
-    public void eliminarCategory(int id2) {
-    }
-
-    public void actualizarCategory(Integer id2, Category category) {
+    public void setFarms(Set<Farm> farms) {
+        this.farms = farms;
     }
 
 }
