@@ -45,14 +45,14 @@ public class MessageController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarMessage(@PathVariable("id") int id){
+    public ResponseEntity<Void> eliminarMessage(@PathVariable("id") int id) {
         this.messageservice.eliminarMessage(id);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Void> actualizarMessage(@RequestBody Message message){
-        this.messageservice.actualizarMessage(message.getId(), message);
+    public ResponseEntity<Void> actualizarMessage(@RequestBody Message message) {
+        this.messageservice.actualizarMessage(message.getIdMessage(), message);
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 }

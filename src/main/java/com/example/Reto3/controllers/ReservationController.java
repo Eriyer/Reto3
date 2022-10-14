@@ -53,7 +53,7 @@ public class ReservationController {
 
     @PutMapping("/update")
     public ResponseEntity<Void> actualizarReservation(@RequestBody Reservation reservation) {
-        this.reservationservice.actualizarReservation(reservation.getId(), reservation);
+        this.reservationservice.actualizarReservation(reservation.getIdReservation(), reservation);
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 

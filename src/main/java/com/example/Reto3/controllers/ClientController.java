@@ -55,7 +55,7 @@ public class ClientController {
 
     @PutMapping("/update")
     public ResponseEntity<Void> actualizarClient(@RequestBody Client client) {
-        this.clientservice.actualizarClient(client.getId(), client);
+        this.clientservice.actualizarClient(client.getIdClient(), client);
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 }
