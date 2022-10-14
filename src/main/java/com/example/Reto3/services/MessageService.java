@@ -24,29 +24,29 @@ public class MessageService {
 
     }
 
-    // metodo GET que me trae un sólo estudiante
     public Message getMessage(int id) {
-        return this.messageRepository.findById(id).get();
+        if (!this.messageRepository.findById(id).isEmpty()) {
+            return this.messageRepository.findById(id).get();
+        } else {
+            return null;
+        }
     }
 
-    // metodoo POST
     public Message crearMessage(Message message) {
         return this.messageRepository.save(message);
     }
 
-    // metodo DELETE
     public void eliminarMessage(int id) {
-        this.messageRepository.deleteById(id);
-
+        if (!this.messageRepository.findById(id).isEmpty()) {
+            this.messageRepository.deleteById(id);
+        }
     }
 
-    // metodoo PUT
     public void actualizarMessage(int id, Message message) {
-        if (this.messageRepository.findById(id).isEmpty()) {
+        if (!this.messageRepository.findById(id).isEmpty()) {
             Message messageDB = this.messageRepository.findById(id).get();
 
             this.messageRepository.save(messageDB);
         }
-
     }
 }

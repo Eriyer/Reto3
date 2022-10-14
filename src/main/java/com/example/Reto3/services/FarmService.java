@@ -26,7 +26,11 @@ public class FarmService {
 
     // metodo GET que me trae un sólo estudiante
     public Farm getFarm(int id) {
-        return this.farmRepository.findById(id).get();
+        if (!this.farmRepository.findById(id).isEmpty()) {
+            return this.farmRepository.findById(id).get();
+        } else {
+            return null;
+        }
     }
 
     // metodoo POST
@@ -36,17 +40,28 @@ public class FarmService {
 
     // metodo DELETE
     public void eliminarFarm(int id) {
-        this.farmRepository.deleteById(id);
-
+        if (!this.farmRepository.findById(id).isEmpty()) {
+            this.farmRepository.deleteById(id);
+        }
     }
 
     // metodoo PUT
     public void actualizarFarm(int id, Farm farm) {
-        if (this.farmRepository.findById(id).isEmpty()) {
+        if (!this.farmRepository.findById(id).isEmpty()) {
             Farm farmDB = this.farmRepository.findById(id).get();
-
+            if (farm.getName() != null) {
+                farmDB.setName(farm.getName());
+            }
+            if (farm.getAddress() != null) {
+                farmDB.setAddress(farm.getAddress());
+            }
+            if (farm.getDescription() != null) {
+                farmDB.setDescription(farm.getDescription());
+            }
+            if (farm.getExtension() != null) {
+                farmDB.setExtension(farm.getExtension());
+            }
             this.farmRepository.save(farmDB);
         }
-
     }
 }

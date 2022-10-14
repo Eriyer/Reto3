@@ -26,7 +26,11 @@ public class ClientService {
 
     // metodo GET que me trae un sólo estudiante
     public Client getClient(int id) {
-        return this.clientRepository.findById(id).get();
+        if (!this.clientRepository.findById(id).isEmpty()) {
+            return this.clientRepository.findById(id).get();
+        } else {
+            return null;
+        }
     }
 
     // metodoo POST
@@ -36,17 +40,28 @@ public class ClientService {
 
     // metodo DELETE
     public void eliminarClient(int id) {
-        this.clientRepository.deleteById(id);
-
+        if (!this.clientRepository.findById(id).isEmpty()) {
+            this.clientRepository.deleteById(id);
+        }
     }
 
     // metodoo PUT
     public void actualizarClient(int id, Client client) {
-        if (this.clientRepository.findById(id).isEmpty()) {
+        if (!this.clientRepository.findById(id).isEmpty()) {
             Client clientDB = this.clientRepository.findById(id).get();
-
+            if (client.getName() != null) {
+                clientDB.setName(client.getName());
+            }
+            if (client.getEmail() != null) {
+                clientDB.setEmail(client.getEmail());
+            }
+            if (client.getPassword() != null) {
+                clientDB.setPassword(client.getPassword());
+            }
+            if (client.getAge() != null) {
+                clientDB.setAge(client.getAge());
+            }
             this.clientRepository.save(clientDB);
         }
-
     }
 }

@@ -24,30 +24,30 @@ public class ReservationService {
 
     }
 
-    // metodo GET que me trae un sólo estudiante
     public Reservation getReservation(int id) {
-        return this.reservationRepository.findById(id).get();
+        if (!this.reservationRepository.findById(id).isEmpty()) {
+            return this.reservationRepository.findById(id).get();
+        } else {
+            return null;
+        }
     }
 
-    // metodoo POST
     public Reservation crearReservation(Reservation reservation) {
         return this.reservationRepository.save(reservation);
     }
 
-    // metodo DELETE
     public void eliminarReservation(int id) {
-        this.reservationRepository.deleteById(id);
-
+        if (!this.reservationRepository.findById(id).isEmpty()) {
+            this.reservationRepository.deleteById(id);
+        }
     }
 
-    // metodoo PUT
     public void actualizarReservation(int id, Reservation reservation) {
-        if (this.reservationRepository.findById(id).isEmpty()) {
+        if (!this.reservationRepository.findById(id).isEmpty()) {
             Reservation reservationDB = this.reservationRepository.findById(id).get();
 
             this.reservationRepository.save(reservationDB);
         }
-
     }
 
 }

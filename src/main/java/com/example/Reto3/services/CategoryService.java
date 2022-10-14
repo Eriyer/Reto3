@@ -19,14 +19,18 @@ public class CategoryService {
 
     // METODOS CRUD
     // metogo GET que me trae todos los estudiantes
-    public List<Category> getListCategories() {
+    public List<Category> getListCategorys() {
         return this.categoryRepository.findAll();
 
     }
 
     // metodo GET que me trae un sólo estudiante
     public Category getCategory(int id) {
-        return this.categoryRepository.findById(id).get();
+        if (!this.categoryRepository.findById(id).isEmpty()) {
+            return this.categoryRepository.findById(id).get();
+        } else {
+            return null;
+        }
     }
 
     // metodoo POST
@@ -36,17 +40,23 @@ public class CategoryService {
 
     // metodo DELETE
     public void eliminarCategory(int id) {
-        this.categoryRepository.deleteById(id);
-
+        if (!this.categoryRepository.findById(id).isEmpty()) {
+            this.categoryRepository.deleteById(id);
+        }
     }
 
     // metodoo PUT
     public void actualizarCategory(int id, Category category) {
-        if (this.categoryRepository.findById(id).isEmpty()) {
+        if (!this.categoryRepository.findById(id).isEmpty()) {
             Category categoryDB = this.categoryRepository.findById(id).get();
 
+            if (category.getName() != null) {
+                categoryDB.setName(category.getName());
+            }
+            if (category.getDescription() != null) {
+                categoryDB.setDescription(category.getDescription());
+            }
             this.categoryRepository.save(categoryDB);
         }
-
     }
 }
