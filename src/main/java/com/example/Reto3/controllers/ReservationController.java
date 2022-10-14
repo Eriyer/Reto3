@@ -30,11 +30,11 @@ public class ReservationController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Reservation>> getReservation() {
+    public ResponseEntity<List<Reservation>> getReservations() {
         return new ResponseEntity<List<Reservation>>(this.reservationservice.getListReservations(), HttpStatus.OK);
     }
 
-    @PostMapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Reservation> getReservation(@PathVariable("id") int id) {
         return new ResponseEntity<Reservation>(this.reservationservice.getReservation(id), HttpStatus.OK);
     }
@@ -46,14 +46,15 @@ public class ReservationController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> eliminarReservation(@PathVariable("id") int id) {
+    public ResponseEntity<Void> eliminarReservation(@PathVariable("id") int id) {
         this.reservationservice.eliminarReservation(id);
-        return new ResponseEntity<String>("Reserva Eliminada", HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("/Update")
-    public ResponseEntity<String> actualizarReservation(@RequestBody Reservation reservation) {
+    @PutMapping("/update")
+    public ResponseEntity<Void> actualizarReservation(@RequestBody Reservation reservation) {
         this.reservationservice.actualizarReservation(reservation.getId(), reservation);
-        return new ResponseEntity<String>("Reserva Actualizado", HttpStatus.CREATED);
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
+
 }

@@ -27,13 +27,7 @@ public class Message implements Serializable {
     private Integer id;
 
     @Column(name = "messagetext")
-    private String messagetex;
-
-    // @Column(name = "createdAt")
-    // private Date createdAt;
-
-    // @Column(name = "updatedAt")
-    // private Date updatedAt;
+    private String messagetext;
 
     // RELACIONES//
     // Relacion muchos a uno. El message tiene enlazado un Client y un Farm
@@ -56,47 +50,27 @@ public class Message implements Serializable {
         this.id = id;
     }
 
-    public String getMessagetex() {
-        return messagetex;
+    public String getMessagetext() {
+        return messagetext;
     }
 
-    public void setMessagetex(String messagetex) {
-        this.messagetex = messagetex;
+    public void setMessagetext(String messagetext) {
+        this.messagetext = messagetext;
     }
 
-    /*
-     * public Date getCreatedAt() {
-     * return createdAt;
-     * }
-     * 
-     * public void setCreatedAt(Date createdAt) {
-     * this.createdAt = createdAt;
-     * }
-     * 
-     * public Date getUpdatedAt() {
-     * return updatedAt;
-     * }
-     * 
-     * public void setUpdatedAt(Date updatedAt) {
-     * this.updatedAt = updatedAt;
-     * }
-     */
-    public List<Message> getListMessages() {
-        return null;
+    public Client getClient() {
+        return client;
     }
 
-    public Message getMessage(int id2) {
-        return null;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
-    public Message crearMessage(Message message) {
-        return null;
+    public Farm getFarm() {
+        return farm;
     }
 
-    public void eliminarMessage(int id2) {
+    public void setFarm(Farm farm) {
+        this.farm = farm;
     }
-
-    public void actualizarMessage(Integer id2, Message message) {
-    }
-
 }
